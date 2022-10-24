@@ -11,20 +11,40 @@ import numpy as np
 
 numVal = 10000
 nBins = 100
+rMin = 0.
+rMax = 1.
 N_array = [1, 2, 4, 12]
 y_N = []
-for i in range (1,numVal+1):
-    for N in N_array:
-        # Generate uniformly distributed numbers
-        rMin = 0.
-        rMax = 1.
+rData = np.zeros(numVal)
+N=12
 
-        r_i = []
-        for i in range(1, N + 1):
-            rData = np.random.uniform(rMin, rMax, numVal)
-            r_i.append(rData)
-        y = np.sqrt(12 / N)*(np.sum(r_i) - (N / 2))
-    y_N.append(y)
+
+
+
+for i in range(1,N+1):
+    rData_temp = np.random.uniform(rMin, rMax, numVal)
+    rData = rData+rData_temp
+y = np.sqrt(12 / N) * ((np.sum(rData)) - (N / 2))
+print(np.sum(rData))
+print(y)
+
+
+
+
+
+
+
+
+
+#plt.hist(rData)
+#plt.show()
+#rData_array.append(np.sum(rData))
+#y = np.sqrt(12 / N) * ((np.array(rData_array)) - (N / 2))
+#print(y)
+#plt.hist(y)
+#plt.show()
+
+
 
 
 
