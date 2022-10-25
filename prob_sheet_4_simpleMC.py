@@ -14,21 +14,24 @@ nBins = 100
 rMin = 0.
 rMax = 1.
 N_array = [1, 2, 4, 12]
-#rData = np.zeros(numVal)
+
 
 for N in N_array:
-    y_N = []
-    for d in range(1, 10001):
-        rData = []
-        for i in range(1, N + 1):
-            rData.append(np.mean(np.random.uniform(rMin, rMax, numVal)))
-        y = np.sqrt(12 / N) * ((np.sum(rData)) - (N / 2))
-        y_N.append(y)
-    plt.hist(y_N, bins=nBins)
+    y_N=[]
+    rData = np.zeros(numVal)
+    for i in range(1, N + 1):
+        rData = rData+ np.random.uniform(rMin, rMax, numVal)
+    y = np.sqrt(12/N)*((rData)-(N / 2))
+
+    plt.hist(y, bins=nBins)
     plt.show()
-    print(np.mean(y_N))
-    print(np.std(y_N))
+    print(np.mean(y))
+    print(np.std(y))
     print(np.mean(rData))
+
+
+
+
 
 
 
