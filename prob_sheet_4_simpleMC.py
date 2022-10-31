@@ -17,7 +17,6 @@ N_array = [1, 2, 4, 12]
 
 
 for N in N_array:
-    y_N=[]
     y = 0
     rData = np.zeros(numVal)#reset the array for each calculation of y_N
     for i in range(1, N + 1):
@@ -36,7 +35,7 @@ for N in N_array:
     ax.set_ylim((0., 400))
     plt.xlabel(r'$r$', labelpad=0)
     plt.ylabel("y_N")
-    plt.plot(xPlot, yPlot, label = "Mean=" +str(round(np.mean(y),4)) +"  SD=" +str(round(np.std(y),4)) + "  Mean of x_N= " + str(round(np.mean(rData),4))+  "  SD of x_N= " + str(round(np.std(rData),4)))
+    plt.plot(xPlot, yPlot, label = "N= "+ str(N)+ "  Mean=" +str(round(np.mean(y),4)) +"  SD=" +str(round(np.std(y),4)) + "  Mean of x_N= " + str(round(np.mean(rData),4))+  "  SD of x_N= " + str(round(np.std(rData),4)))
     leg = ax.legend()
 
 plt.show()
