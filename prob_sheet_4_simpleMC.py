@@ -38,7 +38,9 @@ for N in N_array:
     plt.ylabel("y_N")
     plt.plot(xPlot, yPlot, label = "Mean=" +str(round(np.mean(y),4)) +"  SD=" +str(round(np.std(y),4)) + "  Mean of x_N= " + str(round(np.mean(rData),4))+  "  SD of x_N= " + str(round(np.std(rData),4)))
     leg = ax.legend()
-    plt.show()
+
+plt.show()
+plt.savefig("histograms.pdf", format='pdf')
 
 
 

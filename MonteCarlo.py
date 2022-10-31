@@ -47,5 +47,5 @@ plt.xlabel(r'$x$', labelpad=0)
 plt.plot(xPlot, yPlot)
 
 plt.show()
-#plt.savefig("histograms.pdf", format='pdf')
+plt.savefig("histograms.pdf", format='pdf')
 
