@@ -1,0 +1,77 @@
+<html>
+<head>
+<title>prob_sheet_4_simpleMC.py</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #808080;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #cc7832;}
+.s3 { color: #6897bb;}
+.s4 { color: #6a8759;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+prob_sheet_4_simpleMC.py</font>
+</center></td></tr></table>
+<pre><span class="s0"># cauchMC.py -- simple Monte Carlo program to make histogram of uniformly and Cauchy</span>
+<span class="s0"># distributed random values and plot</span>
+<span class="s0"># G. Cowan, RHUL Physics, October 2019</span>
+<span class="s0"># edited for problem sheet 4</span>
+
+<span class="s2">import </span><span class="s1">matplotlib</span>
+<span class="s2">import </span><span class="s1">matplotlib.pyplot </span><span class="s2">as </span><span class="s1">plt</span>
+<span class="s2">import </span><span class="s1">numpy </span><span class="s2">as </span><span class="s1">np</span>
+
+<span class="s0"># generate data and store in numpy array, put into histogram</span>
+
+<span class="s1">numVal = </span><span class="s3">10000</span>
+<span class="s1">nBins = </span><span class="s3">100</span>
+<span class="s1">rMin = </span><span class="s3">0.</span>
+<span class="s1">rMax = </span><span class="s3">1.</span>
+<span class="s1">N_array = [</span><span class="s3">1</span><span class="s2">, </span><span class="s3">2</span><span class="s2">, </span><span class="s3">4</span><span class="s2">, </span><span class="s3">12</span><span class="s1">]</span>
+
+
+<span class="s2">for </span><span class="s1">N </span><span class="s2">in </span><span class="s1">N_array:</span>
+    <span class="s1">y = </span><span class="s3">0</span>
+    <span class="s1">rData = np.zeros(numVal)</span><span class="s0">#reset the array for each calculation of y_N</span>
+    <span class="s2">for </span><span class="s1">i </span><span class="s2">in </span><span class="s1">range(</span><span class="s3">1</span><span class="s2">, </span><span class="s1">N + </span><span class="s3">1</span><span class="s1">):</span>
+        <span class="s1">rData = rData+ np.random.uniform(rMin</span><span class="s2">, </span><span class="s1">rMax</span><span class="s2">, </span><span class="s1">numVal) </span><span class="s0"># calculatng x_N by summing over random variable generated using np.random.uniform</span>
+    <span class="s1">y = np.sqrt(</span><span class="s3">12</span><span class="s1">/N)*((rData)-(N / </span><span class="s3">2</span><span class="s1">))</span>
+
+    <span class="s1">rHist</span><span class="s2">, </span><span class="s1">rbin_edges = np.histogram(y</span><span class="s2">, </span><span class="s1">bins=nBins</span><span class="s2">, </span><span class="s1">range=(-</span><span class="s3">4</span><span class="s2">, </span><span class="s3">4</span><span class="s1">))</span>
+    <span class="s0"># make plots and save in file</span>
+    <span class="s1">binLo</span><span class="s2">, </span><span class="s1">binHi = rbin_edges[:-</span><span class="s3">1</span><span class="s1">]</span><span class="s2">, </span><span class="s1">rbin_edges[</span><span class="s3">1</span><span class="s1">:]</span>
+    <span class="s1">xPlot = np.array([binLo</span><span class="s2">, </span><span class="s1">binHi]).T.flatten()</span>
+    <span class="s1">yPlot = np.array([rHist</span><span class="s2">, </span><span class="s1">rHist]).T.flatten()</span>
+    <span class="s1">fig</span><span class="s2">, </span><span class="s1">ax = plt.subplots(</span><span class="s3">1</span><span class="s2">, </span><span class="s3">1</span><span class="s1">)</span>
+    <span class="s1">plt.gcf().subplots_adjust(bottom=</span><span class="s3">0.15</span><span class="s1">)</span>
+    <span class="s1">plt.gcf().subplots_adjust(left=</span><span class="s3">0.15</span><span class="s1">)</span>
+    <span class="s1">ax.set_xlim((-</span><span class="s3">4</span><span class="s2">, </span><span class="s3">4</span><span class="s1">))</span>
+    <span class="s1">ax.set_ylim((</span><span class="s3">0.</span><span class="s2">, </span><span class="s3">400</span><span class="s1">))</span>
+    <span class="s1">plt.xlabel(</span><span class="s4">r'$r$'</span><span class="s2">, </span><span class="s1">labelpad=</span><span class="s3">0</span><span class="s1">)</span>
+    <span class="s1">plt.ylabel(</span><span class="s4">&quot;y_N&quot;</span><span class="s1">)</span>
+    <span class="s1">plt.plot(xPlot</span><span class="s2">, </span><span class="s1">yPlot</span><span class="s2">, </span><span class="s1">label = </span><span class="s4">&quot;N= &quot;</span><span class="s1">+ str(N)+ </span><span class="s4">&quot;  Mean=&quot; </span><span class="s1">+str(round(np.mean(y)</span><span class="s2">,</span><span class="s3">4</span><span class="s1">)) +</span><span class="s4">&quot;  SD=&quot; </span><span class="s1">+str(round(np.std(y)</span><span class="s2">,</span><span class="s3">4</span><span class="s1">)) + </span><span class="s4">&quot;  Mean of x_N= &quot; </span><span class="s1">+ str(round(np.mean(rData)</span><span class="s2">,</span><span class="s3">4</span><span class="s1">))+  </span><span class="s4">&quot;  SD of x_N= &quot; </span><span class="s1">+ str(round(np.std(rData)</span><span class="s2">,</span><span class="s3">4</span><span class="s1">)))</span>
+    <span class="s1">leg = ax.legend()</span>
+
+<span class="s1">plt.show()</span>
+<span class="s1">plt.savefig(</span><span class="s4">&quot;histograms.pdf&quot;</span><span class="s2">, </span><span class="s1">format=</span><span class="s4">'pdf'</span><span class="s1">)</span>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</pre>
+</body>
+</html>
