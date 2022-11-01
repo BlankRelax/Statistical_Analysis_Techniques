@@ -7,14 +7,11 @@ import matplotlib
 import matplotlib.pyplot as plt
 import numpy as np
 
-# generate data and store in numpy array, put into histogram
-
 numVal = 10000
 nBins = 100
 rMin = 0.
 rMax = 1.
 N_array = [1, 2, 4, 12]
-
 
 for N in N_array:
     y = 0
@@ -37,7 +34,6 @@ for N in N_array:
     plt.ylabel("y_N")
     plt.plot(xPlot, yPlot, label = "N= "+ str(N)+ "  Mean=" +str(round(np.mean(y),4)) +"  SD=" +str(round(np.std(y),4)) + "  Mean of x_N= " + str(round(np.mean(rData),4))+  "  SD of x_N= " + str(round(np.std(rData),4)))
     leg = ax.legend()
-
 plt.show()
 plt.savefig("histograms.pdf", format='pdf')
 
