@@ -44,7 +44,7 @@ plt.gcf().subplots_adjust(bottom=0.15)
 plt.gcf().subplots_adjust(left=0.15)
 ax.set_xlim((xMin, xMax))
 ax.set_ylim((0., 350))
-plt.xlabel(r'$x$', labelpad=0)
+plt.xlabel(r'$r$', labelpad=0)
 plt.plot(xPlot, yPlot)
 
 plt.show()

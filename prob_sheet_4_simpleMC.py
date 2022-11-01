@@ -30,7 +30,7 @@ for N in N_array:
     plt.gcf().subplots_adjust(left=0.15)
     ax.set_xlim((-4, 4))
     ax.set_ylim((0., 400))
-    plt.xlabel(r'$r$', labelpad=0)
+    plt.xlabel("x_N", labelpad=0)
     plt.ylabel("y_N")
     plt.plot(xPlot, yPlot, label = "N= "+ str(N)+ "  Mean=" +str(round(np.mean(y),4)) +"  SD=" +str(round(np.std(y),4)) + "  Mean of x_N= " + str(round(np.mean(rData),4))+  "  SD of x_N= " + str(round(np.std(rData),4)))
     leg = ax.legend()
