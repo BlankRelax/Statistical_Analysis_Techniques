@@ -1,7 +1,4 @@
-# cauchMC.py -- simple Monte Carlo program to make histogram of uniformly and Cauchy
-# distributed random values and plot
-# G. Cowan, RHUL Physics, October 2019
-# edited for problem sheet 4
+
 
 import matplotlib
 import matplotlib.pyplot as plt
